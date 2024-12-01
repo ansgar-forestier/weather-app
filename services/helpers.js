@@ -5,10 +5,10 @@ import {
 export const getVisibility = (visibilityInMeters) =>
   (visibilityInMeters / 1000).toFixed(1)
     
-export const getTime = (currentTime, timezone) =>
-  unixToLocalTime(currentTime, timezone)
+export const getTime = (unixTime, timezone) =>
+  unixToLocalTime(unixTime, timezone)
 
-export const getWeekDay = (weatherData) => {
+export const getWeekDay = (unixTime, timezone) => {
   const weekday = [
     "Sunday",
     "Monday",
@@ -19,6 +19,6 @@ export const getWeekDay = (weatherData) => {
     "Saturday",
   ];
   return weekday[
-    new Date((weatherData.dt + weatherData.timezone) * 1000).getUTCDay()
+    new Date((unixTime + timezone) * 1000).getUTCDay()
   ];
 };

@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 
 async function getWeatherData (city) {
   const owmDATA = await fetchWeatherDataOWM(city)
-  return getPreparedDataFromOWM(owmDATA);
+  return getUniversalDataFromOWM(owmDATA);
 }
 
 async function fetchWeatherDataOWM (city) {
@@ -21,13 +21,22 @@ async function fetchWeatherDataOWM (city) {
   return await getWeatherData.json();
 }
 
-function getPreparedDataFromOWM (owmDATA) {
+function getUniversalDataFromOWM (owmDATA) {
   const preparedData = {
     city: owmDATA.name,
     countryCode: owmDATA.sys.country,
     description: owmDATA.weather[0].description,
     iconName: owmDATA.weather[0].icon,
-    owmData: owmDATA
+    unixTime: owmDATA.dt,
+    timezone: owmDATA.timezone,
+    humidity: owmDATA.main.humidity,
+    windSpeed: owmDATA.wind.speed,
+    windDirection: owmDATA.wind.deg,
+    visibility: owmDATA.visibility,
+    sunriseUnixTime: owmDATA.sys.sunrise,
+    sunsetUnixTime: owmDATA.sys.sunset,
+    temp: owmDATA.main.temp,
+    tempFeelsLike: owmDATA.main.feels_like,
   }
   return preparedData
 }

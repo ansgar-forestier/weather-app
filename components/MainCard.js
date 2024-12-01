@@ -6,7 +6,8 @@ export const MainCard = ({
   country,
   description,
   iconName,
-  weatherData,
+  temp,
+  tempFeelsLike,
 }) => {
   return (
     <div className={styles.wrapper}>
@@ -21,12 +22,12 @@ export const MainCard = ({
         alt="weatherIcon"
       />
       <h1 className={styles.temperature}>
-        {Math.round(weatherData.main.temp)}
+        {Math.round(temp)}
         °C
       </h1>
       <p>
         Feels like{" "}
-        {Math.round(weatherData.main.feels_like)}
+        {Math.round(tempFeelsLike)}
         °C
       </p>
     </div>

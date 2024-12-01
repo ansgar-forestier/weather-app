@@ -1,14 +1,11 @@
 import { getWeekDay, getTime } from "../services/helpers";
 import styles from "./DateAndTime.module.css";
 
-export const DateAndTime = ({ weatherData }) => {
+export const DateAndTime = ({ unixTime, timezone }) => {
   return (
     <div className={styles.wrapper}>
       <h2>
-        {`${getWeekDay(weatherData)}, ${getTime(
-          weatherData.dt,
-          weatherData.timezone
-        )}`}
+        {`${getWeekDay(unixTime, timezone)}, ${getTime(unixTime, timezone)}`}
       </h2>
     </div>
   );

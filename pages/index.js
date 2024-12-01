@@ -41,11 +41,15 @@ export const App = () => {
         country={weatherData.countryCode}
         description={weatherData.description}
         iconName={weatherData.iconName}
-        weatherData={weatherData.owmData}
+        temp={weatherData.temp}
+        tempFeelsLike={weatherData.tempFeelsLike}
       />
       <ContentBox>
         <Header>
-          <DateAndTime weatherData={weatherData.owmData} />
+          <DateAndTime
+            unixTime={weatherData.unixTime}
+            timezone={weatherData.timezone}
+          />
           <Search
             placeHolder="Search a city..."
             value={cityInput}
@@ -60,7 +64,15 @@ export const App = () => {
             }}
           />
         </Header>
-        <MetricsBox weatherData={weatherData.owmData} />
+        <MetricsBox
+          humidity={weatherData.humidity}
+          windSpeed={weatherData.windSpeed}
+          windDirection={weatherData.windDirection}
+          visibility={weatherData.visibility}
+          sunriseUnixTime={weatherData.sunriseUnixTime}
+          sunsetUnixTime={weatherData.sunsetUnixTime}
+          timezone={weatherData.timezone}
+        />
       </ContentBox>
     </div>
   ) : errorMessage ? (
