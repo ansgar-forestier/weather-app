@@ -27,7 +27,6 @@ export const App = () => {
         body: JSON.stringify({ cityInput }),
       });
       const data = await res.json();
-      console.log("dd ", data)
       setWeatherData({ ...data });
       setCityInput("");
     };
