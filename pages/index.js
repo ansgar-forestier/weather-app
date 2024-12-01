@@ -44,16 +44,16 @@ export const App = () => {
   return weatherData && !weatherData.message ? (
     <div className={styles.wrapper}>
       <MainCard
-        city={weatherData.name}
-        country={weatherData.sys.country}
-        description={weatherData.weather[0].description}
-        iconName={weatherData.weather[0].icon}
+        city={weatherData.city}
+        country={weatherData.countryCode}
+        description={weatherData.description}
+        iconName={weatherData.iconName}
         unitSystem={unitSystem}
-        weatherData={weatherData}
+        weatherData={weatherData.owmData}
       />
       <ContentBox>
         <Header>
-          <DateAndTime weatherData={weatherData} unitSystem={unitSystem} />
+          <DateAndTime weatherData={weatherData.owmData} unitSystem={unitSystem} />
           <Search
             placeHolder="Search a city..."
             value={cityInput}
@@ -68,7 +68,7 @@ export const App = () => {
             }}
           />
         </Header>
-        <MetricsBox weatherData={weatherData} unitSystem={unitSystem} />
+        <MetricsBox weatherData={weatherData.owmData} unitSystem={unitSystem} />
         <UnitSwitch onClick={changeSystem} unitSystem={unitSystem} />
       </ContentBox>
     </div>

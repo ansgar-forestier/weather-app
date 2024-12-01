@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 
 async function getWeatherData (city) {
   const owmDATA = await fetchWeatherDataOWM(city)
-  return owmDATA;
+  return getPreparedDataFromOWM(owmDATA);
 }
 
 async function fetchWeatherDataOWM (city) {
@@ -19,4 +19,15 @@ async function fetchWeatherDataOWM (city) {
     `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.OPENWEATHER_API_KEY}`
   );
   return await getWeatherData.json();
+}
+
+function getPreparedDataFromOWM (owmDATA) {
+  const preparedData = {
+    city: owmDATA.name,
+    countryCode: owmDATA.sys.country,
+    description: owmDATA.weather[0].description,
+    iconName: owmDATA.weather[0].icon,
+    owmData: owmDATA
+  }
+  return preparedData
 }
