@@ -17,6 +17,7 @@ export const App = () => {
   const [triggerFetch, setTriggerFetch] = useState(true);
   const [weatherData, setWeatherData] = useState();
   const [unitSystem, setUnitSystem] = useState("metric");
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const getData = async () => {
@@ -26,10 +27,14 @@ export const App = () => {
         body: JSON.stringify({ cityInput }),
       });
       const data = await res.json();
+      console.log("dd ", data)
       setWeatherData({ ...data });
       setCityInput("");
     };
-    getData();
+    getData().catch((er) => {
+      console.log("Catched client error: " + er )
+      setErrorMessage(er);
+    })
   }, [triggerFetch]);
 
   const changeSystem = () =>
@@ -68,13 +73,8 @@ export const App = () => {
         <UnitSwitch onClick={changeSystem} unitSystem={unitSystem} />
       </ContentBox>
     </div>
-  ) : weatherData && weatherData.message ? (
-    <ErrorScreen errorMessage="City not found, try again!">
-      <Search
-        onFocus={(e) => (e.target.value = "")}
-        onChange={(e) => setCityInput(e.target.value)}
-        onKeyDown={(e) => e.keyCode === 13 && setTriggerFetch(!triggerFetch)}
-      />
+  ) : errorMessage ? (
+    <ErrorScreen errorMessage="Il n'y a rien ici, respirez profondément.">
     </ErrorScreen>
   ) : (
     <LoadingScreen loadingMessage="Loading data..." />
