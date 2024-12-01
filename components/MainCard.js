@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { ctoF } from "../services/converters";
 import styles from "./MainCard.module.css";
 
 export const MainCard = ({
@@ -7,7 +6,6 @@ export const MainCard = ({
   country,
   description,
   iconName,
-  unitSystem,
   weatherData,
 }) => {
   return (
@@ -23,17 +21,13 @@ export const MainCard = ({
         alt="weatherIcon"
       />
       <h1 className={styles.temperature}>
-        {unitSystem == "metric"
-          ? Math.round(weatherData.main.temp)
-          : Math.round(ctoF(weatherData.main.temp))}
-        °{unitSystem == "metric" ? "C" : "F"}
+        {Math.round(weatherData.main.temp)}
+        °C
       </h1>
       <p>
         Feels like{" "}
-        {unitSystem == "metric"
-          ? Math.round(weatherData.main.feels_like)
-          : Math.round(ctoF(weatherData.main.feels_like))}
-        °{unitSystem == "metric" ? "C" : "F"}
+        {Math.round(weatherData.main.feels_like)}
+        °C
       </p>
     </div>
   );

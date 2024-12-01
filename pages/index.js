@@ -6,7 +6,6 @@ import { Header } from "../components/Header";
 import { DateAndTime } from "../components/DateAndTime";
 import { Search } from "../components/Search";
 import { MetricsBox } from "../components/MetricsBox";
-import { UnitSwitch } from "../components/UnitSwitch";
 import { LoadingScreen } from "../components/LoadingScreen";
 import { ErrorScreen } from "../components/ErrorScreen";
 
@@ -18,8 +17,6 @@ export const App = () => {
   const [weatherData, setWeatherData] = useState();
   const [errorMessage, setErrorMessage] = useState("");
 
-  const unitSystem = "metric"
-  
   useEffect(() => {
     const getData = async () => {
       const res = await fetch("api/data", {
@@ -44,12 +41,11 @@ export const App = () => {
         country={weatherData.countryCode}
         description={weatherData.description}
         iconName={weatherData.iconName}
-        unitSystem={unitSystem}
         weatherData={weatherData.owmData}
       />
       <ContentBox>
         <Header>
-          <DateAndTime weatherData={weatherData.owmData} unitSystem={unitSystem} />
+          <DateAndTime weatherData={weatherData.owmData} />
           <Search
             placeHolder="Search a city..."
             value={cityInput}
@@ -64,7 +60,7 @@ export const App = () => {
             }}
           />
         </Header>
-        <MetricsBox weatherData={weatherData.owmData} unitSystem={unitSystem} />
+        <MetricsBox weatherData={weatherData.owmData} />
       </ContentBox>
     </div>
   ) : errorMessage ? (
