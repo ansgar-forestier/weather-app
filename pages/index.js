@@ -16,9 +16,10 @@ export const App = () => {
   const [cityInput, setCityInput] = useState("Riga");
   const [triggerFetch, setTriggerFetch] = useState(true);
   const [weatherData, setWeatherData] = useState();
-  const [unitSystem, setUnitSystem] = useState("metric");
   const [errorMessage, setErrorMessage] = useState("");
 
+  const unitSystem = "metric"
+  
   useEffect(() => {
     const getData = async () => {
       const res = await fetch("api/data", {
@@ -35,11 +36,6 @@ export const App = () => {
       setErrorMessage(er);
     })
   }, [triggerFetch]);
-
-  const changeSystem = () =>
-    unitSystem == "metric"
-      ? setUnitSystem("imperial")
-      : setUnitSystem("metric");
 
   return weatherData && !weatherData.message ? (
     <div className={styles.wrapper}>
@@ -69,7 +65,6 @@ export const App = () => {
           />
         </Header>
         <MetricsBox weatherData={weatherData.owmData} unitSystem={unitSystem} />
-        <UnitSwitch onClick={changeSystem} unitSystem={unitSystem} />
       </ContentBox>
     </div>
   ) : errorMessage ? (
