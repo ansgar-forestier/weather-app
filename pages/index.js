@@ -4,7 +4,6 @@ import { MainCard } from "../components/MainCard";
 import { ContentBox } from "../components/ContentBox";
 import { Header } from "../components/Header";
 import { DateAndTime } from "../components/DateAndTime";
-import { Search } from "../components/Search";
 import { MetricsBox } from "../components/MetricsBox";
 import { LoadingScreen } from "../components/LoadingScreen";
 import { ErrorScreen } from "../components/ErrorScreen";
@@ -12,7 +11,7 @@ import { ErrorScreen } from "../components/ErrorScreen";
 import styles from "../styles/Home.module.css";
 
 export const App = () => {
-  const [cityInput, setCityInput] = useState("Riga");
+  const [cityInput, setCityInput] = useState(process.env.NEXT_PUBLIC_CITY);
   const [triggerFetch, setTriggerFetch] = useState(true);
   const [weatherData, setWeatherData] = useState();
   const [errorMessage, setErrorMessage] = useState("");
@@ -48,19 +47,6 @@ export const App = () => {
         <Header>
           <DateAndTime
             timezoneOffsetSeconds={weatherData.timezoneOffsetSeconds}
-          />
-          <Search
-            placeHolder="Search a city..."
-            value={cityInput}
-            onFocus={(e) => {
-              e.target.value = "";
-              e.target.placeholder = "";
-            }}
-            onChange={(e) => setCityInput(e.target.value)}
-            onKeyDown={(e) => {
-              e.keyCode === 13 && setTriggerFetch(!triggerFetch);
-              e.target.placeholder = "Search a city...";
-            }}
           />
         </Header>
         <MetricsBox
