@@ -13,8 +13,8 @@ async function getWeatherData (city) {
   const omData = await fetchWeatherDataOM(city)
   const uniDataFromOM = getUniversalDataFromOM(omData)
 
-  const owmDATA = await fetchWeatherDataOWM(city)
-  const uniDataFromOWM = getUniversalDataFromOWM(owmDATA)
+  // const owmDATA = await fetchWeatherDataOWM(city)
+  // const uniDataFromOWM = getUniversalDataFromOWM(owmDATA)
 
   return uniDataFromOM;
 }
