@@ -21,10 +21,10 @@ export const degToCompass = (num) => {
   return arr[val % 16];
 };
 
-export const unixToLocalTime = (unixSeconds, timezone) => {
-  let time = new Date((unixSeconds + timezone) * 1000)
-    .toISOString()
-    .match(/(\d{2}:\d{2})/)[0];
+export const jsDateToStr = (jsDate) =>
+  `${jsDate.getHours()}:${jsDate.getMinutes()}`
 
-  return time.startsWith("0") ? time.substring(1) : time;
-};
+export const getDateWithOffset = (unixTime, offsetSeconds) => {
+  const currentOffset = (new Date()).getTimezoneOffset() * 60
+  return new Date((unixTime + currentOffset + offsetSeconds) * 1000)
+}

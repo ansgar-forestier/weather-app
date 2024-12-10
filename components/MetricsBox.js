@@ -13,9 +13,8 @@ export const MetricsBox = ({
   visibility,
   sunriseUnixTime,
   sunsetUnixTime,
-  timezone
+  timezoneOffsetSeconds
 }) => {
-
   return (
     <div className={styles.wrapper}>
       <MetricsCard
@@ -46,7 +45,7 @@ export const MetricsBox = ({
         iconSrc={"/icons/sunrise.png"}
         metric={getTime(
           sunriseUnixTime,
-          timezone
+          timezoneOffsetSeconds
         )}
       />
       <MetricsCard
@@ -54,7 +53,7 @@ export const MetricsBox = ({
         iconSrc={"/icons/sunset.png"}
         metric={getTime(
           sunsetUnixTime,
-          timezone
+          timezoneOffsetSeconds
         )}
       />
     </div>

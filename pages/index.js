@@ -47,8 +47,7 @@ export const App = () => {
       <ContentBox>
         <Header>
           <DateAndTime
-            unixTime={weatherData.unixTime}
-            timezone={weatherData.timezone}
+            timezoneOffsetSeconds={weatherData.timezoneOffsetSeconds}
           />
           <Search
             placeHolder="Search a city..."
@@ -71,7 +70,7 @@ export const App = () => {
           visibility={weatherData.visibility}
           sunriseUnixTime={weatherData.sunriseUnixTime}
           sunsetUnixTime={weatherData.sunsetUnixTime}
-          timezone={weatherData.timezone}
+          timezoneOffsetSeconds={weatherData.timezoneOffsetSeconds}
         />
       </ContentBox>
     </div>
