@@ -18,30 +18,30 @@ export const MetricsBox = ({
   return (
     <div className={styles.wrapper}>
       <MetricsCard
-        title={"Humidity"}
+        title={"Humidité"}
         iconSrc={"/icons/humidity.png"}
         metric={humidity}
         unit={"%"}
       />
       <MetricsCard
-        title={"Wind speed"}
+        title={"Vitesse du vent"}
         iconSrc={"/icons/wind.png"}
         metric={windSpeed}
         unit={"m/s"}
       />
       <MetricsCard
-        title={"Wind direction"}
+        title={"Direction du vent"}
         iconSrc={"/icons/compass.png"}
         metric={degToCompass(windDirection)}
       />
       <MetricsCard
-        title={"Visibility"}
+        title={"Visibilité"}
         iconSrc={"/icons/binocular.png"}
         metric={getVisibility(visibility)}
         unit={"km"}
       />
       <MetricsCard
-        title={"Sunrise"}
+        title={"Lever du soleil"}
         iconSrc={"/icons/sunrise.png"}
         metric={getTime(
           sunriseUnixTime,
@@ -49,7 +49,7 @@ export const MetricsBox = ({
         )}
       />
       <MetricsCard
-        title={"Sunset"}
+        title={"Coucher du soleil"}
         iconSrc={"/icons/sunset.png"}
         metric={getTime(
           sunsetUnixTime,

@@ -26,7 +26,7 @@ export const MainCard = ({
         °C
       </h1>
       <p>
-        Feels like{" "}
+        Ressenti{" "}
         {Math.round(tempFeelsLike)}
         °C
       </p>
