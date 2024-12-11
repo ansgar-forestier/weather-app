@@ -17,6 +17,10 @@ export const App = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
+    const timer = setInterval(() => {
+      setTriggerFetch(!triggerFetch);
+    }, 1000*60*60); // 1 hour interval
+
     const getData = async () => {
       const res = await fetch("api/data", {
         method: "POST",
@@ -25,12 +29,13 @@ export const App = () => {
       });
       const data = await res.json();
       setWeatherData({ ...data });
-      setCityInput("");
     };
-    getData().catch((er) => {
+    getData()
+      .catch((er) => {
       console.log("Catched client error: " + er )
       setErrorMessage(er);
     })
+    return () => clearInterval(timer);
   }, [triggerFetch]);
 
   return weatherData && !weatherData.message ? (

@@ -21,8 +21,10 @@ export const degToCompass = (num) => {
   return arr[val % 16];
 };
 
-export const jsDateToStr = (jsDate) =>
-  `${jsDate.getHours()}:${jsDate.getMinutes()}`
+export const jsDateToStr = (jsDate) => {
+  const minutes = (jsDate.getMinutes() < 10 ? '0' : '') + jsDate.getMinutes()
+  return `${jsDate.getHours()}:${minutes}`
+}
 
 export const getDateWithOffset = (unixTime, offsetSeconds) => {
   const currentOffset = (new Date()).getTimezoneOffset() * 60
